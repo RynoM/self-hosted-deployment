@@ -1,5 +1,6 @@
 ## Setup
-The following steps are to be executed on the same server the docker compose stack is meant to run on. 
+The following steps are to be executed on the same server the docker compose stack is meant to run on. It assumes
+its a linux machine with an ssh server running.
 
 1) Use `docker compose up -d gitea` to start Gitea
 2) browse to the new Gitea instance and go through initial setup.
@@ -15,7 +16,7 @@ and restart Gitea.
 6) Go to Site Administration -> Runners -> Create new runner and get a runner registration token. 
 7) Replace the variables in `docker-compose.yml` or set them as environment variables: 
 - `${RUNNER_TOKEN}` 
-- `${GITEA_IP}` (e.g. 192.168.2.1:3000) 
+- `${GITEA_IP}` (e.g. 192.168.2.1) 
 - `${PATH_TO_THIS_REPO}` (e.g. '~/deployment_pipeline')
 - `${REPO_NAME}` (e.g. Bob/deployment_pipeline)
 8) Add your SSH key to Gitea [example guide](https://www.techaddressed.com/tutorials/add-verify-ssh-keys-gitea/). 
