@@ -1,4 +1,22 @@
 # Docker compose CI/CD
+While on this self-hosting journey, I've not found any simple solutions that I liked for automatically deploying a docker compose
+stack to a single machine. I've played with git hooks and didn't want to go for Github actions. But now with the 
+new release of [Gitea Actions](https://blog.gitea.io/2022/12/feature-preview-gitea-actions/), you can self-host a simple 
+CI/CD workflow! No more hacks/workarounds needed and lots of flexibility if needed, and you can easily store all your 
+environment variables in the Gitea repo secrets.
+
+Changes normally come from one of two scenarios:
+1) You make changes to your `docker-compose.yml` or something like home assistant's `configuration.yml` in your local IDE.
+2) You update something (config) through the UI of a service (say node-red `flows.json`), 
+that you want to backup to your repo.
+
+For scenario 1, you can simply make your changes in your comfy local IDE, push them to Gitea and the `deploy.yaml` 
+will pull the changes to your server and update your compose stack.
+For scenario 2, once [this PR in Gitea](https://github.com/go-gitea/gitea/pull/22751) is merged, we can use `backup.yaml`
+to schedule a workflow that will push your changes from the server to the repo.
+Bonus: From Gitea you can set up a mirror to Github, so that you have extra peace of mind.
+
+
 ![Architecture](./img/Architecture.png)
 
 ## Setup
@@ -25,6 +43,8 @@ and restart Gitea.
 8) Add your SSH key to Gitea [example guide](https://www.techaddressed.com/tutorials/add-verify-ssh-keys-gitea/). 
 Note: Make sure it doesn't have a passphrase and [permissions are set correctly](https://stackoverflow.com/questions/9270734/ssh-permissions-are-too-open).
 9) Run `docker compose up -d gitea_act` to start the actions runner.
+10) Add all your environment variables for your other docker compose services to the secrets in the Gitea repo,
+using the `SERVER_ENV_PROD` secret name.
 
 Optional:
 10) Set Github (or other) as mirror for Gitea repo.
@@ -38,3 +58,4 @@ Commit and push your work, and watch the Gitea Actions do the rest of the work!
 - Test the schedule workflow once its released.
 - The runner registration token only works once, so if you have to rebuild, you have to refresh 
 the token. Maybe there is a solution for this?
+- automatically restart services in the workflow if files in their folders have changed.
