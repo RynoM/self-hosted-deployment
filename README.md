@@ -8,7 +8,7 @@ environment variables in the Gitea repo secrets.
 Changes normally come from one of two scenarios:
 1) You make changes to your `docker-compose.yml` or something like home assistant's `configuration.yml` in your local IDE.
 2) You update something (config) through the UI of a service (say node-red `flows.json`), 
-that you want to backup to your repo.
+that you want backed up to your repo.
 
 For scenario 1, you can simply make your changes in your comfy local IDE, push them to Gitea and the `deploy.yaml` 
 will pull the changes to your server and update your compose stack.
@@ -21,7 +21,7 @@ Bonus: From Gitea you can set up a mirror to Github, so that you have extra peac
 
 ## Setup
 The following steps are to be executed on the same server the docker compose stack is meant to run on. It assumes
-its a linux machine with an ssh server running.
+it's a linux machine with an ssh server running.
 
 1) Use `docker compose up -d gitea` to start Gitea
 2) browse to the new Gitea instance and go through initial setup.
@@ -47,7 +47,7 @@ Note: Make sure it doesn't have a passphrase and [permissions are set correctly]
 using the `SERVER_ENV_PROD` secret name.
 
 Optional:
-10) Set Github (or other) as mirror for Gitea repo.
+11) Set Github (or other) as mirror for Gitea repo.
 
 ## Usage
 In your development environment, set Gitea as the remote for your repo.
