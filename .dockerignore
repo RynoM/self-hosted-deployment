@@ -2,5 +2,4 @@
 *
 
 # Allow files and directories
-!/example.txt
-!/example_dir
+!/start.sh
