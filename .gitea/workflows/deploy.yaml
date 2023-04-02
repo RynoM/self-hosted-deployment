@@ -1,0 +1,20 @@
+name: Server Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: /repo
+    steps:
+      - run: git pull gitea main
+
+      - name: Set environment variables
+        run: echo "${{ secrets.SERVER_ENV_PROD }}" > .env
+
+      - name: Deploy
+        run: docker compose up -d --no-recreate --remove-orphans

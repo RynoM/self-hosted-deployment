@@ -1,0 +1,6 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!/example.txt
+!/example_dir

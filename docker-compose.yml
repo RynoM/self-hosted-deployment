@@ -1,0 +1,34 @@
+version: "3"
+name: home_server
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: always
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "222:22"
+
+  gitea_act:
+    container_name: gitea_act
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: gitea_act.Dockerfile
+      args:
+        - ACT_RUNNER_VERSION=linux-amd64
+    environment:
+      - INSTANCE_URL=${GITEA_IP}
+      - RUNNER_TOKEN=${RUNNER_TOKEN}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${PATH_TO_THIS_REPO}:/repo
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh:ro

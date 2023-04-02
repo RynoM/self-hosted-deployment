@@ -1,0 +1,29 @@
+# Folders and files starting with . with exceptions
+.*
+!.gitea
+!.dockerignore
+!.gitignore
+
+# Secrets and variables
+/homeassistant/secrets.yml
+
+# Docker mounted volumes
+plex
+prowlarr
+downloads
+mqtt
+gitea
+
+# Extensions
+*.save
+*.backup
+*.db
+*.fault
+*.log
+
+# Logs, storage and packages
+/media/
+*/log/*
+*.log.*
+*package*
+
