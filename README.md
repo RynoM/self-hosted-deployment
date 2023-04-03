@@ -1,6 +1,6 @@
 # Docker compose CI/CD
 While on this self-hosting journey, I've not found any simple solutions that I liked for automatically deploying a docker compose
-stack to a single machine. I've played with git hooks and didn't want to go for Github actions. But now with the 
+stack to a single machine. I've played with git hooks and didn't want to go for Github actions (have to expose network). But now with the 
 new release of [Gitea Actions](https://blog.gitea.io/2022/12/feature-preview-gitea-actions/), you can self-host a simple 
 CI/CD workflow! No more hacks/workarounds needed and lots of flexibility if needed, and you can easily store all your 
 environment variables in the Gitea repo secrets.
@@ -11,7 +11,7 @@ Changes normally come from one of two scenarios:
 that you want backed up to your repo.
 
 For scenario 1, you can simply make your changes in your comfy local IDE, push them to Gitea and the `deploy.yaml` 
-will pull the changes to your server and update your compose stack.
+will pull the changes to your server, set environment variables based on your Gitea repo's secrets and update your compose stack.
 For scenario 2, once [this PR in Gitea](https://github.com/go-gitea/gitea/pull/22751) is merged, we can use `backup.yaml`
 to schedule a workflow that will push your changes from the server to the repo.
 Bonus: From Gitea you can set up a mirror to Github, so that you have extra peace of mind.
@@ -58,4 +58,6 @@ Commit and push your work, and watch the Gitea Actions do the rest of the work!
 - Test the schedule workflow once its released.
 - The runner registration token only works once, so if you have to rebuild, you have to refresh 
 the token. Maybe there is a solution for this?
-- automatically restart services in the workflow if files in their folders have changed.
+- Automatically restart services in the workflow if files in their folders have changed.
+- Reduce image size
+- Add image to Dockerhub?
