@@ -1,8 +1,8 @@
 # Docker compose CI/CD
 While on this self-hosting journey, I've not found any simple solutions that I liked for automatically deploying a docker compose
 stack to a single machine. I've played with git hooks and didn't want to go for Github actions (have to expose network). But now with the 
-new release of [Gitea Actions](https://blog.gitea.io/2022/12/feature-preview-gitea-actions/), you can self-host a simple 
-CI/CD workflow! No more hacks/workarounds needed and lots of flexibility if needed, and you can easily store all your 
+new release of [Gitea Actions](https://blog.gitea.io/2022/12/feature-preview-gitea-actions/), there is another option to self-host a simple 
+CI/CD workflow! Nice simple (and Github Actions compatible) workflows, and you can easily store all your 
 environment variables in the Gitea repo secrets.
 
 Changes normally come from one of two scenarios:
@@ -51,7 +51,7 @@ Optional:
 
 ## Usage
 In your development environment, set Gitea as the remote for your repo.
-Commit and push your work, and watch the Gitea Actions do the rest of the work!
+Commit and push your work, add your other services to the `docker-compose.yml` and watch the Gitea Actions do the rest!
 
 ## TODO / IDEAS
 - Could maybe try and get a runner token from Gitea by itself?
