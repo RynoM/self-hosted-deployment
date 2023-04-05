@@ -7,7 +7,7 @@ ENV DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 
 RUN apt-get update -yq
 RUN apt-get install
-RUN apt-get install -yq curl nodejs git ssh # NodeJS required for act_runner
+RUN apt-get install -yq curl nodejs git # NodeJS required for act_runner
 
 # Add Docker (compose)
 COPY --from=docker:latest /usr/local/bin/docker /usr/bin/docker

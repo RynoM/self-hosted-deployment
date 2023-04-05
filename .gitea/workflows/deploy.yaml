@@ -11,7 +11,11 @@ jobs:
       run:
         working-directory: /repo
     steps:
-      - run: git pull gitea main
+      - name: Set git remote if not already set
+        run: git remote -v | grep -w gitea || git remote add gitea "/repositories/${GITHUB_REPOSITORY,,}.git"
+
+      - name: Checkout repo
+        run: git pull gitea main
 
       - name: Set environment variables
         run: echo "${{ secrets.SERVER_ENV_PROD }}" > .env

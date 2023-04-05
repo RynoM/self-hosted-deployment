@@ -25,10 +25,8 @@ services:
       args:
         - ACT_RUNNER_VERSION=linux-amd64
     environment:
-      - INSTANCE_IP=${GITEA_IP}
       - RUNNER_TOKEN=${RUNNER_TOKEN}
-      - GITEA_REPO_NAME=${REPO_NAME}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PATH_TO_THIS_REPO}:/repo
-      - ~/.ssh:/root/.ssh
+      - ./gitea/git/repositories:/repositories
+      - ${PWD}:/repo
