@@ -28,5 +28,4 @@ services:
       - RUNNER_TOKEN=${RUNNER_TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./gitea/git/repositories:/repositories
       - ${PWD}:/repo
