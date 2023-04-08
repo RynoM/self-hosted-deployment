@@ -30,9 +30,10 @@ RUN apt-get update -yq && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/*
 
-RUN mkdir ./repo && \
+RUN mkdir -p /repo/gitea_act && \
     git config --global --add safe.directory /repo
 
+COPY runner_config.yaml /runner_config.yaml
 COPY start.sh /init/start.sh
 RUN chmod +x /init/start.sh
 
