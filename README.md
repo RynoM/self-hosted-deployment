@@ -50,8 +50,7 @@ Commit and push your work, and watch the Gitea Actions do the rest of the work!
 - [x] Simplify by not using SSH between containers, but gitea volume in the runner instead
 - [ ] Could maybe try and get a runner token from Gitea by itself?
 - [ ] Test the schedule workflow once its released.
-- [ ] The runner registration token only works once, so if you have to rebuild, you have to refresh 
-the token. Maybe there is a solution for this?
+- [x] Don't (try to) re-register runner on every build
 - [ ] Automatically restart services in the workflow if files in their folders have changed.
 - [x] Reduce image size
 - [ ] Add image to Dockerhub?
