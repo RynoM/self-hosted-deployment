@@ -71,6 +71,6 @@ Commit and push your work, and watch the Gitea Actions do the rest of the work!
 - [ ] Could maybe try and get a runner token from Gitea by itself?
 - [ ] Test the schedule workflow once its released.
 - [x] Don't (try to) re-register runner on every build
-- [ ] Automatically restart services in the workflow if files in their folders have changed.
+- [x] Automatically restart services in the workflow if files in their folders have changed.
 - [x] Reduce image size
 - [ ] Add image to Dockerhub?
