@@ -22,3 +22,6 @@ jobs:
 
       - name: Deploy
         run: docker compose up -d --no-recreate --remove-orphans
+
+      - name: Restart services if files changed
+        run: /restart_if_files_changed.sh "homeassistant" "dashy" "zigbee2mqtt"

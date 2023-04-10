@@ -1,4 +1,11 @@
 # Docker compose CI/CD
+## Features
+- Automatically pull changes in your repo to your server
+- Perform `docker compose up` to deploy any new services
+- Restart services if configuration files changed.
+
+
+## Introduction
 While on this self-hosting journey, I've not found any simple solutions that I liked for automatically deploying a docker compose
 stack to a single machine. I've played with git hooks and didn't want to go for Github actions (have to expose network). But now with the 
 new release of [Gitea Actions](https://blog.gitea.io/2022/12/feature-preview-gitea-actions/), you can self-host a simple 
@@ -12,6 +19,19 @@ that you want backed up to your repo.
 
 For scenario 1, you can simply make your changes in your comfy local IDE, push them to Gitea and the `deploy.yaml` 
 will pull the changes to your server, set environment variables based on your Gitea repo's secrets and update your compose stack.
+After deploying your new services, it will also check which files were changed in the last commit, if these file paths contain
+names of services you defined, those services will be restarted such that your new config can be picked up! Note: This assumes
+the volumes for these services have the same name as the services themselves. E.g. Home assistant is called `homeassistant` in
+your docker compose stack and the volume is mapped to a directory also named `homeassistant`.
+
+```yaml
+version: "3"
+name: home_server
+services:
+  homeassistant:
+    volumes:
+      - ./homeassistant:/config
+```
 For scenario 2, once [this PR in Gitea](https://github.com/go-gitea/gitea/pull/22751) is merged, we can use `backup.yaml`
 to schedule a workflow that will push your changes from the server to the repo.
 Bonus: From Gitea you can set up a mirror to Github, so that you have extra peace of mind.
