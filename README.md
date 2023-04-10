@@ -1,9 +1,9 @@
 # Docker compose CI/CD
 ## Features
-- Automatically pull changes in your repo to your server
-- Perform `docker compose up` to deploy any new services
+- Automatically pull changes in your repo to your server.
+- Perform `docker compose up` to deploy any new services.
 - Restart services if configuration files changed.
-
+- (soon?) scheduled backups (commits) for tracked files with external changes.
 
 ## Introduction
 While on this self-hosting journey, I've not found any simple solutions that I liked for automatically deploying a docker compose
