@@ -3,6 +3,7 @@ log:
   level: info
 
 runner:
+  ## THE ONLY NON-DEFAULT SETTING:
   # Where to store the registration result.
   file: /repo/gitea_act/.runner
   # Execute how many tasks concurrently at the same time.
