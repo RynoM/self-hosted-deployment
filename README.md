@@ -73,4 +73,4 @@ Commit and push your work, and watch the Gitea Actions do the rest of the work!
 - [x] Don't (try to) re-register runner on every build
 - [x] Automatically restart services in the workflow if files in their folders have changed.
 - [x] Reduce image size
-- [ ] Add image to Dockerhub?
+- [x] Add image to Dockerhub
