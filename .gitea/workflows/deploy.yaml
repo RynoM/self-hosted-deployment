@@ -21,7 +21,7 @@ jobs:
         run: echo "${{ secrets.SERVER_ENV_PROD }}" > .env
 
       - name: Deploy
-        run: docker compose up -d --no-recreate --remove-orphans
+        run: docker compose up -d --remove-orphans
 
       - name: Restart services if files changed
         run: /restart_if_files_changed.sh "homeassistant" "dashy" "zigbee2mqtt"
