@@ -9,7 +9,7 @@ services:
       - USER_GID=1000
     restart: always
     volumes:
-      - ./gitea:/data
+      - ${REPO_DIR}/gitea:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -24,4 +24,4 @@ services:
       - RUNNER_TOKEN=${RUNNER_TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}:/repo
+      - ${REPO_DIR}:/repo

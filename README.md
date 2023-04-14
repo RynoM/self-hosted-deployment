@@ -30,7 +30,7 @@ name: home_server
 services:
   homeassistant:
     volumes:
-      - ./homeassistant:/config
+      - ${REPO_DIR}/homeassistant:/config
 ```
 For scenario 2, once [this PR in Gitea](https://github.com/go-gitea/gitea/pull/22751) is merged, we can use `backup.yaml`
 to schedule a workflow that will push your changes from the server to the repo.
@@ -59,12 +59,16 @@ and restart Gitea.
 9) Add all your environment variables for your other docker compose services to the secrets in the Gitea repo,
 using the `SERVER_ENV_PROD` secret name.
 
-Optional:
+Optional:  
 10) Set Github (or other) as mirror for Gitea repo.
 
 ## Usage
 In your development environment, set Gitea as the remote for your repo.
 Commit and push your work, and watch the Gitea Actions do the rest of the work!
+
+## Troubleshooting
+- make sure all the volumes in your `docker-compose.yml` have absolute paths, otherwise docker will try to mount
+from the filesystem of the Actions Runner container instead of the host.
 
 ## TODO / IDEAS
 - [x] Simplify by not using SSH between containers, but gitea volume in the runner instead
