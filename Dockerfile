@@ -9,7 +9,7 @@ RUN apt-get install -yq curl ca-certificates
 
 # Download docker compose
 RUN mkdir -p /root/.docker/cli-plugins
-RUN curl -SL https://github.com/docker/compose/releases/download/v2.17.2/docker-compose-linux-x86_64 -o /root/.docker/cli-plugins/docker-compose
+RUN curl -SL https://github.com/docker/compose/releases/download/v2.28.1/docker-compose-linux-x86_64 -o /root/.docker/cli-plugins/docker-compose
 RUN chmod +x /root/.docker/cli-plugins/docker-compose
 
 # Download act_runner
