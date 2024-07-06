@@ -9,7 +9,7 @@ services:
       - USER_GID=1000
     restart: always
     volumes:
-      - ./gitea:/data
+      - ${REPO_DIR}/gitea:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -19,16 +19,9 @@ services:
   gitea_act:
     container_name: gitea_act
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: gitea_act.Dockerfile
-      args:
-        - ACT_RUNNER_VERSION=linux-amd64
+    image: rynomarree/self-hosted-deployment:latest
     environment:
-      - INSTANCE_IP=${GITEA_IP}
       - RUNNER_TOKEN=${RUNNER_TOKEN}
-      - GITEA_REPO_NAME=${REPO_NAME}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PATH_TO_THIS_REPO}:/repo
-      - ~/.ssh:/root/.ssh
+      - ${REPO_DIR}:/repo

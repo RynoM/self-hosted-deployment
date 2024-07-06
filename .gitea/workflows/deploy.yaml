@@ -11,10 +11,17 @@ jobs:
       run:
         working-directory: /repo
     steps:
-      - run: git pull gitea main
+      - name: Set git remote if not already set
+        run: git remote -v | grep -w gitea || git remote add gitea "./gitea/git/repositories/${GITHUB_REPOSITORY,,}.git"
+
+      - name: Checkout repo
+        run: git pull gitea main
 
       - name: Set environment variables
         run: echo "${{ secrets.SERVER_ENV_PROD }}" > .env
 
       - name: Deploy
-        run: docker compose up -d --no-recreate --remove-orphans
+        run: docker compose up -d --remove-orphans
+
+      - name: Restart services if files changed
+        run: /restart_if_files_changed.sh "homeassistant" "dashy" "zigbee2mqtt"

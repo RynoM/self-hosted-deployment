@@ -11,6 +11,9 @@ jobs:
       run:
         working-directory: /repo
     steps:
+      - name: Set git remote if not already set
+        run: git remote -v | grep -w gitea || git remote add gitea "./gitea/git/repositories/${GITHUB_REPOSITORY,,}.git"
+
       - name: Backup changes to Gitea
         run: |
           git add -u
