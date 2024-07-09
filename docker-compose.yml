@@ -9,7 +9,7 @@ services:
       - USER_GID=1000
     restart: always
     volumes:
-      - ${REPO_DIR}/gitea:/data
+      - gitea:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -19,16 +19,10 @@ services:
   gitea_act:
     container_name: gitea_act
     restart: unless-stopped
-    image: gitea/act_runner:latest
+    image: rynomarree/self-hosted-deployment:latest
     environment:
-      CONFIG_FILE: /config.yaml
-      GITEA_INSTANCE_URL: "${INSTANCE_URL}"
       GITEA_RUNNER_REGISTRATION_TOKEN: "${RUNNER_TOKEN}"
-      GITEA_RUNNER_NAME: "actions-runner"
-      GITEA_RUNNER_LABELS: "self-hosted"
     volumes:
-      - ./config.yaml:/config.yaml
       - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
       - ${REPO_DIR}:/repo
-      - ./restart_if_files_changed.sh:/restart_if_files_changed.sh

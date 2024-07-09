@@ -2,6 +2,5 @@
 *
 
 # Allow files and directories
-!/start.sh
-!/runner_config.yaml
+!/config.yaml
 !/restart_if_files_changed.sh

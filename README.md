@@ -5,10 +5,6 @@
 - Restart services if configuration files changed.
 - scheduled backups (commits) for tracked files with external changes.
 
-| :warning: Note                |
-|:---------------------------|
-| Gitea now publishes their own act runner docker image, so the image rynomarree/self-hosted-deployment (used in old versions) is removed from dockerhub. |
-
 ## Introduction
 While on this self-hosting journey, I've not found any simple solutions that I liked for automatically deploying a docker compose
 stack to a single machine. I've played with git hooks and didn't want to go for Github actions (have to expose network). But now with the 
