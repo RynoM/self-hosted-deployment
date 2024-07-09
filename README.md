@@ -7,7 +7,7 @@
 
 | :warning: Note                |
 |:---------------------------|
-| Gitea now publishes their own act runner docker image, so rynomarree/self-hosted-deployment (used in old versions) is removed. |
+| Gitea now publishes their own act runner docker image, so the image rynomarree/self-hosted-deployment (used in old versions) is removed from dockerhub. |
 
 ## Introduction
 While on this self-hosting journey, I've not found any simple solutions that I liked for automatically deploying a docker compose
@@ -48,11 +48,6 @@ The following steps are to be executed on the same server the docker compose sta
 
 1) Use `docker compose up -d gitea` to start Gitea
 2) browse to the new Gitea instance and go through initial setup.
-```
-    # custom/conf/app.ini
-    [actions]
-    ENABLED = true
-```
 3) Create a new repo in Gitea. Note: Name the base branch `main` or update the workflows accordingly.
 4) Go to the repo's setting in Gitea, check the box: 'Enable Repository Actions' and save.
 5) Go to Site Administration -> Runners -> Create new runner and get a runner registration token. (see [link](https://docs.gitea.com/usage/actions/act-runner))
