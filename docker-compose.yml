@@ -23,6 +23,6 @@ services:
     environment:
       GITEA_RUNNER_REGISTRATION_TOKEN: "${RUNNER_TOKEN}"
     volumes:
-      - ./data:/data
+      - ./gitea_act/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
       - ${REPO_DIR}:/repo
